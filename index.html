@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>nsrddyn — Portfolio</title>
+        <style>
+            * { margin:0; padding:0; box-sizing:border-box; color:#eaeaea; }
+            body { font-family: Inter, system-ui; background-color:#0f0f10; overflow-x:hidden; text-align:center; min-height:100%; }
+            h1, h2, h3, h4, h5, h6 { margin:20px; font-weight:600; }
+            p { line-height:1.6; margin:20px; }
+            a { color:#fdfdfd; text-decoration:none; }
+            a:hover { text-decoration:underline; }
+            li { list-style-type:none; padding:5px 0; margin:10px 0; }
+            .container { max-width:1000px; margin:0 auto; padding:24px; }
+            .site-header { background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-bottom:1px solid rgba(255,255,255,0.03); }
+            .projects-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:18px; }
+            .card { background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:18px; }
+            .card-link { color:#fff; font-weight:600; }
+            footer { display:flex; justify-content:center; align-items:center; gap:10px; margin-top:40px; padding:20px 0; border-top:1px solid rgba(255,255,255,0.03); }
+            @media (max-width:700px) { }
+            header { display:flex; flex-direction:row; justify-content:center; align-items:center; background-color:#333; padding:10px 0; text-align:center; color:#fff; }
+        </style>
+</head>
+
+<body>
+    <header class="site-header">
+        <h3>Abdellah El Morabit</h3>
+    </header>
+    <main>
+        <section class="projects container">
+            <div class="projects-grid">
+                <article class="card">
+                    <h3>Torque</h3>
+                    <p>CPU and Ram Stress Testing</p>
+                    <p><a href="#" class="card-link">View</a></p>
+                </article>
+                <article class="card">
+                    <h3>SYNF</h3>
+                    <p>System Resources Tool</p>
+                    <p><a href="#" class="card-link">View</a></p>
+                </article>
+                <article class="card">
+                    <h3>Unix Shell</h3>
+                    <p>Attempt at a Unix shell implementation</p>
+                    <p><a href="#" class="card-link">View</a></p>
+                </article>
+                <article class="card">
+                    <h3>Paradigm - Agent</h3>
+                    <p>DBus Agent Implementation</p>
+                    <p><a href="#" class="card-link">View</a></p>
+                </article>
+                <article class="card">
+                    <h3>Odootoor</h3>
+                    <p>Hackathon Project</p>
+                    <p><a href="#" class="card-link">View</a></p>
+                </article>
+                <article class="card">
+                    <h3>I2C - Controller</h3>
+                    <p>Python IoT Project</p>
+                    <p><a href="#" class="card-link">View</a></p>
+                </article>
+                <article class="card">
+                    <h3>Tetris</h3>
+                    <p>Attempt at a Tetris game</p>
+                    <p><a href="#" class="card-link">View</a></p>
+                </article>
+                <article class="card">
+                    <h3>Reaction Time Tester</h3>
+                    <p>Measuring Human Reaction Time</p>
+                    <p><a href="#" class="card-link">View</a></p>
+                </article>
+            </div>
+        </section>
+
+        <footer>
+            <ul class="footer-links">
+                <li><a href="https://git.nsrddyn.com/nasr" target="_blank" rel="noopener">Git</a></li>
+                <li><a href="https://www.linkedin.com/in/abdellah-el-morabit/" target="_blank" rel="noopener">LinkedIn</a></li>
+            </ul>
+        </footer>
+    </main>
+</body>
+
+</html>

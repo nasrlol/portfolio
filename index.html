@@ -26,7 +26,7 @@
         }
 
         body {
-            font-family: Inter, system-ui;
+            font-family: 'JetBrains Mono', monospace;
             background-color: #0f0f10;
             overflow-x: hidden;
             text-align: center;
@@ -90,7 +90,7 @@
             color: #eaeaea;
             border: 1px solid #232326;
             box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.13);
-            transition: background 0.2s, color 0.2s, border 0.2s, box-shadow 0.2s;
+            padding: 0% 24px 18px;
         }
 
         .card:hover {
@@ -110,7 +110,6 @@
         }
 
         .card:hover {
-            transform: translateY(-6px) scale(1.025);
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.18);
         }
 
@@ -128,23 +127,46 @@
             border-bottom: 2px solid #7fd7ff;
         }
 
+        /* Horizontal floating animation for cards */
+        @keyframes buffer-overflow-horizontal {
+            0% { transform: translateX(0); }
+            10% { transform: translateX(12px); }
+            25% { transform: translateX(-18px); }
+            40% { transform: translateX(0); }
+            55% { transform: translateX(0); }
+            60% { transform: translateX(0); }
+            65% { transform: translateX(0); }
+            70% { transform: translateX(0); }
+            75% { transform: translateX(0); }
+            80% { transform: translateX(0); }
+            82% { transform: translateX(0); }
+            85% { transform: translateX(-120vw); } /* overflow left */
+            88% { transform: translateX(120vw); }  /* overflow right */
+            91% { transform: translateX(0); }
+            100% { transform: translateX(0); }
+        }
+
+        .card.floating {
+            animation: buffer-overflow-horizontal 11s cubic-bezier(0.77,0,0.18,1) infinite;
+        }
+
         .bottom-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 18px 32px;
             border-top: 1px solid #232326;
-            background: #18181a;
+            background: rgba(24, 24, 26, 0.82);
             border-radius: 18px 18px 0 0;
             position: static;
-            margin-top: 48px;
+            margin-top: 0px;
             z-index: 10;
             font-size: 1.1em;
         }
 
         .bottom-bar .name {
             font-weight: 700;
-            color: #eaeaea;
+            color: #6ec6ff;
             font-size: 1.15em;
             letter-spacing: 0.5px;
         }
@@ -206,7 +228,7 @@
             margin: 48px auto 24px auto;
             background: #18181a;
             color: #7fd7ff;
-            font-family: 'Fira Mono', 'Consolas', monospace;
+            font-family: 'JetBrains Mono', monospace;
             font-size: 1.08em;
             border-radius: 10px;
             padding: 22px 28px;
@@ -220,18 +242,31 @@
 
 <body>
     <nav class="bottom-bar">
-        <span class="name">Abdellah El Morabit</span>
+        <span class="name" id="add-cube-name" style="cursor:pointer;">Abdellah El Morabit</span>
+        <div class="memory-analyzer">
+            <div class="mem-label">RAM: <span id="ram-usage">0</span> MB</div>
+            <div class="mem-bar-bg">
+                <div class="mem-bar-heap" id="heap-bar"></div>
+                <div class="mem-bar-stack" id="stack-bar"></div>
+            </div>
+            <div class="mem-label mem-label-small">Heap: <span id="heap-usage">0</span> MB &nbsp;|&nbsp; Stack: <span id="stack-usage">0</span> MB</div>
+        </div>
         <ul class="footer-links">
-            <li><a href="https://git.nsrddyn.com" target="_blank" rel="noopener">Git</a></li>
-            <li><a href="https://www.linkedin.com/in/abdellah-el-morabit/" target="_blank" rel="noopener">LinkedIn</a>
-            </li>
+            <li><a href="https://git.nsrddyn.com" target="_blank" rel="noopener">git</a></li>
+            <li><a href="https://www.github.com/nasrlol" target="_blank" rel="noopener">github</a></li>
+            <li><a href="https://www.linkedin.com/in/abdellah-el-morabit/" target="_blank" rel="noopener">linkedin</a></li>
         </ul>
     </nav>
+
     <main>
 
-        <pre class="intro-code">// Hi, I'm Abdellah — a systems and software enthusiast.
-// I enjoy building tools, exploring low-level tech, and learning by doing.
-// Below are some of my recent projects and experiments.
+        <pre class="intro-code"> Hi, I'm Abdellah — a systems and software enthusiast.
+ I enjoy building tools, exploring low-level tech, and learning by doing.
+ Below are some of my recent projects and experiments.
+ I spend my time mostly coding in C, Go and Scala.
+ But I'm always eager to explore new languages and technologies!
+ Currently a student at Erasmus Hogeschool in Brussels, Belgium.
+ Feel free to reach out if you'd like to collaborate or just say hi!
 </pre>
         <!-- 3D cubes will be drawn on the canvas -->
         <section class="projects container">
@@ -240,80 +275,95 @@
                     <h3>Torque</h3>
                     <p>High-performance tool for stress testing CPU and memory, designed to benchmark and analyze system
                         stability under load.</p>
-                    <p><a href="#" class="card-link">View</a></p>
+                    <p><a href="https://git.nsrddyn.com/torque.git" class="card-link" target="_blank" rel="noopener">View</a></p>
                 </article>
                 <article class="card">
-                    <h3>SYNF</h3>
-                    <p>Comprehensive system resource monitor providing real-time insights into hardware and process
-                        utilization.</p>
-                    <p><a href="#" class="card-link">View</a></p>
+                    <h3>Codootoor</h3>
+                    <p> Coming soon...  .</p>
+                    <p><a href="https://git.nsrddyn.com/codootoor.git" class="card-link" target="_blank" rel="noopener">View</a></p>
                 </article>
                 <article class="card">
                     <h3>Unix Shell</h3>
                     <p>Custom shell project exploring Unix command parsing, job control, and scripting fundamentals.</p>
-                    <p><a href="#" class="card-link">View</a></p>
+                    <p><a href="https://git.nsrddyn.com/unix-shell.git" class="card-link" target="_blank" rel="noopener">View</a></p>
                 </article>
                 <article class="card">
                     <h3>Paradigm - Agent</h3>
                     <p>Lightweight DBus agent for secure, automated system data collection and communication with
                         management services.</p>
-                    <p><a href="#" class="card-link">View</a></p>
+                    <p><a href="https://git.nsrddyn.com/paradigm-agent.git" class="card-link" target="_blank" rel="noopener">View</a></p>
                 </article>
                 <article class="card">
                     <h3>Paradigm - Agent-c</h3>
                     <p>Rewritten in C/C++ for performance, this agent leverages gRPC to map system resources and report
                         to a native server management UI.</p>
-                    <p><a href="#" class="card-link">View</a></p>
+                    <p><a href="https://git.nsrddyn.com/paradigm-agent-c.git" class="card-link" target="_blank" rel="noopener">View</a></p>
                 </article>
                 <article class="card">
                     <h3>Odootoor</h3>
                     <p>Innovative hackathon solution focused on rapid prototyping and creative problem-solving in a team
                         setting.</p>
-                    <p><a href="#" class="card-link">View</a></p>
+                    <p><a href="https://git.nsrddyn.com/odootoor.git" class="card-link" target="_blank" rel="noopener">View</a></p>
                 </article>
                 <article class="card">
                     <h3>I2C - Controller</h3>
                     <p>Python-based IoT controller for managing and interfacing with I2C devices in embedded
                         environments.</p>
-                    <p><a href="#" class="card-link">View</a></p>
+                    <p><a href="https://git.nsrddyn.com/i2c-controller.git" class="card-link" target="_blank" rel="noopener">View</a></p>
                 </article>
                 <article class="card">
                     <h3>Tetris</h3>
                     <p>Classic Tetris game recreation, focusing on game logic, UI design, and interactive playability.
                     </p>
-                    <p><a href="#" class="card-link">View</a></p>
+                    <p><a href="https://git.nsrddyn.com/tetris.git" class="card-link" target="_blank" rel="noopener">View</a></p>
                 </article>
                 <article class="card">
                     <h3>Reaction Time Tester</h3>
                     <p>Interactive web tool to measure and visualize human reaction speed with engaging feedback.</p>
-                    <p><a href="#" class="card-link">View</a></p>
+                    <p><a href="https://git.nsrddyn.com/reaction-time-tester.git" class="card-link" target="_blank" rel="noopener">View</a></p>
                 </article>
             </div>
         </section>
 
 
         <script>
-            // Randomly swap two cards every 1.2 seconds
+            // On hover, swap the hovered card with a random other card
             document.addEventListener('DOMContentLoaded', function () {
                 const grid = document.querySelector('.projects-grid');
                 const getCards = () => Array.from(grid.querySelectorAll('.card'));
-                setInterval(() => {
+                let lastShuffle = 0;
+                grid.addEventListener('mouseover', function (e) {
+                    const now = Date.now();
+                    if (now - lastShuffle < 400) return;
                     const cards = getCards();
-                    if (cards.length < 2) return;
-                    let idx1 = Math.floor(Math.random() * cards.length);
-                    let idx2 = idx1;
-                    while (idx2 === idx1) {
-                        idx2 = Math.floor(Math.random() * cards.length);
+                    if (e.target.classList.contains('card')) {
+                        const hovered = e.target;
+                        let idx = cards.indexOf(hovered);
+                        let swapIdx = idx;
+                        while (swapIdx === idx) {
+                            swapIdx = Math.floor(Math.random() * cards.length);
+                        }
+                        if (swapIdx !== idx) {
+                            if (swapIdx > idx) {
+                                grid.insertBefore(cards[swapIdx], hovered);
+                            } else {
+                                grid.insertBefore(hovered, cards[swapIdx]);
+                            }
+                            lastShuffle = now;
+                        }
                     }
-                    // Swap the two cards
-                    if (idx2 > idx1) {
-                        grid.insertBefore(cards[idx2], cards[idx1]);
-                    } else {
-                        grid.insertBefore(cards[idx1], cards[idx2]);
-                    }
-                }, 1200);
+                });
+
+                // Add floating animation with random delays to each card
+                const cards = getCards();
+                cards.forEach(card => {
+                    card.classList.add('floating');
+                    // Randomize animation delay for more organic movement
+                    card.style.animationDelay = (Math.random() * 7).toFixed(2) + 's';
+                });
             });
-            // Draw 5 small rotating 3D cubes around the info blocks using the canvas
+
+            // Draw 3D cubes around the info blocks using the canvas
             const canvas = document.createElement('canvas');
             const ctx = canvas.getContext('2d');
             canvas.width = window.innerWidth;
@@ -336,13 +386,9 @@
                 [0, 4], [1, 5], [2, 6], [3, 7]
             ];
 
-            // Positions for the 5 cubes (relative to viewport)
-            // Each cube has a position and velocity
-            const cubeCount = 15;
-            const cubeSize = 32;
             const margin = 60;
-            const cubeStates = Array.from({length: cubeCount}, (_,i) => {
-                // Randomize initial positions and velocities
+            const cubeSize = 32;
+            let cubeStates = Array.from({length: 15}, () => {
                 let angle = Math.random() * Math.PI * 2;
                 let speed = 1.2 + Math.random() * 0.8;
                 return {
@@ -396,7 +442,50 @@
             }
             animate();
 
+            // Add cube on name click
+            document.getElementById('add-cube-name').addEventListener('click', function() {
+                let angle = Math.random() * Math.PI * 2;
+                let speed = 1.2 + Math.random() * 0.8;
+                cubeStates.push({
+                    x: margin + Math.random() * (canvas.width - 2*margin),
+                    y: margin + Math.random() * (canvas.height - 2*margin),
+                    vx: Math.cos(angle) * speed,
+                    vy: Math.sin(angle) * speed
+                });
+            });
 
+
+        // Memory Analyzer Simulation
+        (function() {
+            const ramEl = document.getElementById('ram-usage');
+            const heapEl = document.getElementById('heap-usage');
+            const stackEl = document.getElementById('stack-usage');
+            const heapBar = document.getElementById('heap-bar');
+            const stackBar = document.getElementById('stack-bar');
+            // Simulate a system with 256MB RAM
+            const TOTAL_RAM = 256;
+            let heap = 40 + Math.random() * 40;
+            let stack = 8 + Math.random() * 8;
+            function updateMemory() {
+                // Simulate heap and stack random walk
+                heap += (Math.random() - 0.5) * 4;
+                stack += (Math.random() - 0.5) * 1.2;
+                heap = Math.max(24, Math.min(heap, TOTAL_RAM - 16));
+                stack = Math.max(4, Math.min(stack, 32));
+                let used = heap + stack;
+                ramEl.textContent = used.toFixed(1);
+                heapEl.textContent = heap.toFixed(1);
+                stackEl.textContent = stack.toFixed(1);
+                // Heap bar grows from left, stack from right
+                let heapWidth = (heap / TOTAL_RAM) * 100;
+                let stackWidth = (stack / TOTAL_RAM) * 100;
+                heapBar.style.width = heapWidth + '%';
+                stackBar.style.width = stackWidth + '%';
+                stackBar.style.left = (100 - stackWidth) + '%';
+            }
+            setInterval(updateMemory, 900);
+            updateMemory();
+        })();
         </script>
     </main>
 </body>

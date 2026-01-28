@@ -2,93 +2,402 @@
 <html lang="en">
 
 <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>nsrddyn — Portfolio</title>
-        <style>
-            * { margin:0; padding:0; box-sizing:border-box; color:#eaeaea; }
-            body { font-family: Inter, system-ui; background-color:#0f0f10; overflow-x:hidden; text-align:center; min-height:100%; }
-            h1, h2, h3, h4, h5, h6 { margin:20px; font-weight:600; }
-            p { line-height:1.6; margin:20px; }
-            a { color:#fdfdfd; text-decoration:none; }
-            a:hover { text-decoration:underline; }
-            li { list-style-type:none; padding:5px 0; margin:10px 0; }
-            .container { max-width:1000px; margin:0 auto; padding:24px; }
-            .site-header { background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-bottom:1px solid rgba(255,255,255,0.03); }
-            .projects-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:18px; }
-            .card { background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:18px; }
-            .card-link { color:#fff; font-weight:600; }
-            footer { display:flex; justify-content:center; align-items:center; gap:10px; margin-top:40px; padding:20px 0; border-top:1px solid rgba(255,255,255,0.03); }
-            @media (max-width:700px) { }
-            header { display:flex; flex-direction:row; justify-content:center; align-items:center; background-color:#333; padding:10px 0; text-align:center; color:#fff; }
-        </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nsrddyn — Portfolio</title>
+    <style>
+        .decor-square {
+            position: absolute;
+            width: 38px;
+            height: 38px;
+            border: 2px solid #7fd7ff;
+            border-radius: 6px;
+            opacity: 0.7;
+            pointer-events: none;
+            z-index: 2;
+            transition: box-shadow 0.2s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            color: #eaeaea;
+        }
+
+        body {
+            font-family: Inter, system-ui;
+            background-color: #0f0f10;
+            overflow-x: hidden;
+            text-align: center;
+            min-height: 100%;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            margin: 20px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin: 18px 0;
+        }
+
+        a {
+            color: #fdfdfd;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
+
+        li {
+            list-style-type: none;
+            padding: 5px 0;
+            margin: 10px 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 32px 12px;
+        }
+
+        .site-header {
+            background: #18181a;
+            border-bottom: 1px solid #232326;
+            box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.04);
+            border-radius: 0 0 18px 18px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 28px;
+            margin-top: 32px;
+        }
+
+        .card {
+            background: #18181a;
+            color: #eaeaea;
+            border: 1px solid #232326;
+            box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.13);
+            transition: background 0.2s, color 0.2s, border 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            background: #232326;
+            color: #fff;
+            border: 1.5px solid #7fd7ff;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.18);
+        }
+
+        .card {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
+            padding: 24px 18px;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.13);
+            transition: transform 0.18s, box-shadow 0.18s;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .card:hover {
+            transform: translateY(-6px) scale(1.025);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.18);
+        }
+
+        .card-link {
+            color: #fff;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+            border-bottom: 1px solid #7fd7ff33;
+            padding-bottom: 2px;
+            transition: color 0.2s, border 0.2s;
+        }
+
+        .card-link:hover {
+            color: #7fd7ff;
+            border-bottom: 2px solid #7fd7ff;
+        }
+
+        .bottom-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 32px;
+            border-top: 1px solid #232326;
+            background: #18181a;
+            border-radius: 18px 18px 0 0;
+            position: static;
+            margin-top: 48px;
+            z-index: 10;
+            font-size: 1.1em;
+        }
+
+        .bottom-bar .name {
+            font-weight: 700;
+            color: #eaeaea;
+            font-size: 1.15em;
+            letter-spacing: 0.5px;
+        }
+
+        .bottom-bar .footer-links {
+            display: flex;
+            gap: 18px;
+        }
+
+        .bottom-bar .footer-links a {
+            opacity: 0.88;
+            transition: opacity 0.2s, color 0.2s;
+            color: #7fd7ff;
+            text-decoration: none;
+        }
+
+        .bottom-bar .footer-links a:hover {
+            opacity: 1;
+            color: #fff;
+        }
+
+        @media (max-width:700px) {
+            .container {
+                padding: 18px 2vw;
+            }
+
+            .projects-grid {
+                gap: 14px;
+            }
+
+            .card {
+                padding: 16px 8px;
+            }
+
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                margin: 14px;
+            }
+        }
+
+        header {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            background-color: #222;
+            padding: 14px 0;
+            text-align: center;
+            color: #fff;
+            border-radius: 0 0 18px 18px;
+        }
+
+        .intro-code {
+            max-width: 700px;
+            margin: 48px auto 24px auto;
+            background: #18181a;
+            color: #7fd7ff;
+            font-family: 'Fira Mono', 'Consolas', monospace;
+            font-size: 1.08em;
+            border-radius: 10px;
+            padding: 22px 28px;
+            box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.10);
+            text-align: left;
+            white-space: pre-line;
+            border: 1px solid #232326;
+        }
+    </style>
 </head>
 
 <body>
-    <header class="site-header">
-        <h3>Abdellah El Morabit</h3>
-    </header>
+    <nav class="bottom-bar">
+        <span class="name">Abdellah El Morabit</span>
+        <ul class="footer-links">
+            <li><a href="https://git.nsrddyn.com" target="_blank" rel="noopener">Git</a></li>
+            <li><a href="https://www.linkedin.com/in/abdellah-el-morabit/" target="_blank" rel="noopener">LinkedIn</a>
+            </li>
+        </ul>
+    </nav>
     <main>
+
+        <pre class="intro-code">// Hi, I'm Abdellah — a systems and software enthusiast.
+// I enjoy building tools, exploring low-level tech, and learning by doing.
+// Below are some of my recent projects and experiments.
+</pre>
+        <!-- 3D cubes will be drawn on the canvas -->
         <section class="projects container">
             <div class="projects-grid">
                 <article class="card">
                     <h3>Torque</h3>
-                    <p>CPU and Ram Stress Testing</p>
+                    <p>High-performance tool for stress testing CPU and memory, designed to benchmark and analyze system
+                        stability under load.</p>
                     <p><a href="#" class="card-link">View</a></p>
                 </article>
                 <article class="card">
                     <h3>SYNF</h3>
-                    <p>System Resources Tool</p>
+                    <p>Comprehensive system resource monitor providing real-time insights into hardware and process
+                        utilization.</p>
                     <p><a href="#" class="card-link">View</a></p>
                 </article>
                 <article class="card">
                     <h3>Unix Shell</h3>
-                    <p>Attempt at a Unix shell implementation</p>
+                    <p>Custom shell project exploring Unix command parsing, job control, and scripting fundamentals.</p>
                     <p><a href="#" class="card-link">View</a></p>
                 </article>
                 <article class="card">
                     <h3>Paradigm - Agent</h3>
-                    <p>DBus Agent Implementation</p>
+                    <p>Lightweight DBus agent for secure, automated system data collection and communication with
+                        management services.</p>
                     <p><a href="#" class="card-link">View</a></p>
                 </article>
                 <article class="card">
                     <h3>Paradigm - Agent-c</h3>
-                    <p>Resources gathering tool</p>
-                    <p>
-                    As a continuation of the Agent, Agent-c is a rewrite in c/cpp (cpp needed for using google grpc).
-                    We attempted to do a complete map of a system and send that back to a native server managment UI.
-                    </p>
+                    <p>Rewritten in C/C++ for performance, this agent leverages gRPC to map system resources and report
+                        to a native server management UI.</p>
                     <p><a href="#" class="card-link">View</a></p>
                 </article>
                 <article class="card">
                     <h3>Odootoor</h3>
-                    <p>Hackathon Project</p>
+                    <p>Innovative hackathon solution focused on rapid prototyping and creative problem-solving in a team
+                        setting.</p>
                     <p><a href="#" class="card-link">View</a></p>
                 </article>
                 <article class="card">
                     <h3>I2C - Controller</h3>
-                    <p>Python IoT Project</p>
+                    <p>Python-based IoT controller for managing and interfacing with I2C devices in embedded
+                        environments.</p>
                     <p><a href="#" class="card-link">View</a></p>
                 </article>
                 <article class="card">
                     <h3>Tetris</h3>
-                    <p>Attempt at a Tetris game</p>
+                    <p>Classic Tetris game recreation, focusing on game logic, UI design, and interactive playability.
+                    </p>
                     <p><a href="#" class="card-link">View</a></p>
                 </article>
                 <article class="card">
                     <h3>Reaction Time Tester</h3>
-                    <p>Measuring Human Reaction Time</p>
+                    <p>Interactive web tool to measure and visualize human reaction speed with engaging feedback.</p>
                     <p><a href="#" class="card-link">View</a></p>
                 </article>
             </div>
         </section>
 
-        <footer>
-            <ul class="footer-links">
-                <li><a href="https://git.nsrddyn.com/nasr" target="_blank" rel="noopener">Git</a></li>
-                <li><a href="https://www.linkedin.com/in/abdellah-el-morabit/" target="_blank" rel="noopener">LinkedIn</a></li>
-            </ul>
-        </footer>
+
+        <script>
+            // Randomly swap two cards every 1.2 seconds
+            document.addEventListener('DOMContentLoaded', function () {
+                const grid = document.querySelector('.projects-grid');
+                const getCards = () => Array.from(grid.querySelectorAll('.card'));
+                setInterval(() => {
+                    const cards = getCards();
+                    if (cards.length < 2) return;
+                    let idx1 = Math.floor(Math.random() * cards.length);
+                    let idx2 = idx1;
+                    while (idx2 === idx1) {
+                        idx2 = Math.floor(Math.random() * cards.length);
+                    }
+                    // Swap the two cards
+                    if (idx2 > idx1) {
+                        grid.insertBefore(cards[idx2], cards[idx1]);
+                    } else {
+                        grid.insertBefore(cards[idx1], cards[idx2]);
+                    }
+                }, 1200);
+            });
+            // Draw 5 small rotating 3D cubes around the info blocks using the canvas
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            canvas.style.position = 'fixed';
+            canvas.style.top = '0';
+            canvas.style.left = '0';
+            canvas.style.zIndex = '-1';
+            // Insert canvas before <main> so it's behind the content
+            document.body.insertBefore(canvas, document.querySelector('main'));
+
+            // Cube geometry
+            const verts = [
+                [-1, -1, -1], [1, -1, -1], [1, 1, -1], [-1, 1, -1],
+                [-1, -1, 1], [1, -1, 1], [1, 1, 1], [-1, 1, 1]
+            ];
+            const edges = [
+                [0, 1], [1, 2], [2, 3], [3, 0],
+                [4, 5], [5, 6], [6, 7], [7, 4],
+                [0, 4], [1, 5], [2, 6], [3, 7]
+            ];
+
+            // Positions for the 5 cubes (relative to viewport)
+            // Each cube has a position and velocity
+            const cubeCount = 15;
+            const cubeSize = 32;
+            const margin = 60;
+            const cubeStates = Array.from({length: cubeCount}, (_,i) => {
+                // Randomize initial positions and velocities
+                let angle = Math.random() * Math.PI * 2;
+                let speed = 1.2 + Math.random() * 0.8;
+                return {
+                    x: margin + Math.random() * (canvas.width - 2*margin),
+                    y: margin + Math.random() * (canvas.height - 2*margin),
+                    vx: Math.cos(angle) * speed,
+                    vy: Math.sin(angle) * speed
+                };
+            });
+
+            function drawCube(centerX, centerY, size, t, color) {
+                let points = verts.map(([x, y, z]) => {
+                    // rotate
+                    let X = x * Math.cos(t) - z * Math.sin(t);
+                    let Z = x * Math.sin(t) + z * Math.cos(t);
+                    let Y = y * Math.cos(t * 0.7) - Z * Math.sin(t * 0.7);
+                    Z = y * Math.sin(t * 0.7) + Z * Math.cos(t * 0.7);
+                    // project
+                    let px = centerX + (X / (Z + 4)) * size;
+                    let py = centerY + (Y / (Z + 4)) * size;
+                    return [px, py];
+                });
+                ctx.strokeStyle = color;
+                ctx.lineWidth = 2;
+                for (let [a, b] of edges) {
+                    ctx.beginPath();
+                    ctx.moveTo(points[a][0], points[a][1]);
+                    ctx.lineTo(points[b][0], points[b][1]);
+                    ctx.stroke();
+                }
+            }
+
+            let t = 0;
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = 'rgba(60,60,65,0.18)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                // Move and draw cubes
+                for (let i = 0; i < cubeStates.length; i++) {
+                    let c = cubeStates[i];
+                    // Move
+                    c.x += c.vx;
+                    c.y += c.vy;
+                    // Bounce off edges
+                    if (c.x < margin || c.x > canvas.width - margin) c.vx *= -1;
+                    if (c.y < margin || c.y > canvas.height - margin) c.vy *= -1;
+                    drawCube(c.x, c.y, cubeSize, t + i, '#7fd7ff');
+                }
+                t += 0.02;
+                requestAnimationFrame(animate);
+            }
+            animate();
+
+
+        </script>
     </main>
 </body>
 
